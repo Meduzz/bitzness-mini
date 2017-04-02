@@ -1,5 +1,7 @@
 package se.chimps.bitzness.mini.config
 
+import java.net.URL
+
 import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.collection.convert.decorateAsScala._
@@ -21,7 +23,13 @@ trait Configs {
 	def fileName:Option[String] = None
 
 	lazy val config = fileName match {
-		case Some(file) => ConfigFactory.load(file)
+		case Some(file) => {
+			if (file.startsWith("http")) {
+				ConfigFactory.parseURL(new URL(file))
+			} else {
+				ConfigFactory.load(file)
+			}
+		}
 		case None => ConfigFactory.load()
 	}
 

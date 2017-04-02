@@ -1,6 +1,6 @@
 name := "bitzness-mini"
 
-version := "20161217-1"
+version := "20170402"
 
 scalaVersion := "2.11.7"
 
