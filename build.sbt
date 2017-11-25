@@ -4,11 +4,13 @@ version := "20170930"
 
 scalaVersion := "2.12.1"
 
+crossScalaVersions := Seq("2.11.11", "2.12.4")
+
 organization := "se.chimps.bitzness"
 
 credentials += Credentials(Path.userHome / ".ivy2" / ".bitzness")
 
-publishTo := Some("se.chimps.bitzness" at "http://yamr.kodiak.se/maven")
+publishTo := Some("se.chimps.bitzness" at "https://yamr.kodiak.se/maven")
 
 publishArtifact in (Compile, packageDoc) := false
 
