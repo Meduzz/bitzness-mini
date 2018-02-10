@@ -36,17 +36,24 @@ object Jade4j {
 }
 
 trait Jade4j {
-	def render():Array[Byte]
+	def render(encoding:String):Array[Byte]
+	def renderString():String
 }
 
 class Jade4JImpl(template:JadeTemplate, model:Map[String, AnyRef], config:Option[JadeConfiguration] = None) extends Jade4j {
-	import scala.collection.JavaConversions._
+	import scala.collection.JavaConverters._
 
-	override def render(): Array[Byte] = {
-		if (config.nonEmpty) {
-			config.get.renderTemplate(template, model).getBytes("utf-8")
-		} else {
-			Jade4J.render(template, model, true).getBytes("utf-8")
+	override def render(encoding:String): Array[Byte] = {
+		config match {
+			case Some(c) => c.renderTemplate(template, model.asJava).getBytes(encoding)
+			case None => Jade4J.render(template, model.asJava, true).getBytes(encoding)
+		}
+	}
+
+	override def renderString():String = {
+		config match {
+			case Some(c) => c.renderTemplate(template, model.asJava)
+			case None => Jade4J.render(template, model.asJava, true)
 		}
 	}
 }
