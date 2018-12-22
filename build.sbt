@@ -1,6 +1,6 @@
 name := "bitzness-mini"
 
-version := "20180807"
+version := "20181222"
 
 scalaVersion := "2.12.4"
 
@@ -27,3 +27,5 @@ libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.3"
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13"
 
 libraryDependencies += "de.neuland-bfi" % "jade4j" % "1.2.6"
+
+libraryDependencies += "com.roundeights" %% "hasher" % "1.2.0"
